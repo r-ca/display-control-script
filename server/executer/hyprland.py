@@ -21,7 +21,7 @@ class Utils:
         with open(self.STATE_FILE, "w") as f:
             f.write("1" if state else "0")
 
-    def exec_cmd(self, cmd: str) -> str:
+    def exec_cmd(self, cmd: str) -> int:
         return os.system(cmd)
 
 
@@ -35,10 +35,10 @@ class HyprlandDisplayOperate(IDisplayOperate):
 
     def turn_on(self):
         result = Utils().exec_cmd("hyprctl dispatch dpms on")
-        if result == "ok":
+        if result == 0:
             Utils().set_state(True)
 
     def turn_off(self):
         result = Utils().exec_cmd("hyprctl dispatch dpms off")
-        if result == "ok":
+        if result == 0:
             Utils().set_state(False)
