@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from executer.hyprland import HyprlandDisplayOperate
 
 app = FastAPI()
@@ -11,14 +10,14 @@ async def state():
 
 
 # Debug
-@app.post("/turn_on")
+@app.get("/turn_on")
 async def turn_on():
     HyprlandDisplayOperate().turn_on()
     return {"state": HyprlandDisplayOperate().state()}
 
 
 # Debug
-@app.post("/turn_off")
+@app.get("/turn_off")
 async def turn_off():
     HyprlandDisplayOperate().turn_off()
     return {"state": HyprlandDisplayOperate().state()}
