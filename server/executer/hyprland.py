@@ -34,7 +34,11 @@ class HyprlandDisplayOperate(IDisplayOperate):
             return self.state()
 
     def turn_on(self):
-        Utils().exec_cmd("hyprctl dispatch dpms on")
+        result = Utils().exec_cmd("hyprctl dispatch dpms on")
+        if result == "ok":
+            Utils().set_state(True)
 
     def turn_off(self):
-        Utils().exec_cmd("hyprctl dispatch dpms off")
+        result = Utils().exec_cmd("hyprctl dispatch dpms off")
+        if result == "ok":
+            Utils().set_state(False)
