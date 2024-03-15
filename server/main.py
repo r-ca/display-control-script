@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .executer.hyprland import HyprlandDisplayOperate
+from executer.hyprland import HyprlandDisplayOperate
 
 app = FastAPI()
 

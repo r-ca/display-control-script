@@ -1,4 +1,4 @@
-from ..interface.display_operate import IDisplayOperate
+from interface.display_operate import IDisplayOperate
 import os
 
 
