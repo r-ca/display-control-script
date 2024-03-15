@@ -21,8 +21,8 @@ class Utils:
         with open(self.STATE_FILE, "w") as f:
             f.write("1" if state else "0")
 
-    def exec_cmd(self, cmd: str):
-        os.system(cmd)
+    def exec_cmd(self, cmd: str) -> str:
+        return os.system(cmd)
 
 
 class HyprlandDisplayOperate(IDisplayOperate):
