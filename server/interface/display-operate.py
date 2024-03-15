@@ -1,6 +1,8 @@
 import abc
 
-class IMonitorOperate(metaclass=abc.ABCMeta):
+
+class IDisplayOperate(metaclass=abc.ABCMeta):
+
     @abc.abstractmethod
     def state(self) -> bool:
         pass
