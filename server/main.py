@@ -1,24 +1,24 @@
 from fastapi import FastAPI
 
-from executer import hyprland
+from .executer.hyprland import HyprlandDisplayOperate
 
 app = FastAPI()
 
 
 @app.get("/state")
 async def state():
-    return {"state": hyprland.HyprlandDisplayOperate().state()}
+    return {"state": HyprlandDisplayOperate().state()}
 
 
 # Debug
 @app.post("/turn_on")
 async def turn_on():
-    hyprland.HyprlandDisplayOperate().turn_on()
-    return {"state": hyprland.HyprlandDisplayOperate().state()}
+    HyprlandDisplayOperate().turn_on()
+    return {"state": HyprlandDisplayOperate().state()}
 
 
 # Debug
 @app.post("/turn_off")
 async def turn_off():
-    hyprland.HyprlandDisplayOperate().turn_off()
-    return {"state": hyprland.HyprlandDisplayOperate().state()}
+    HyprlandDisplayOperate().turn_off()
+    return {"state": HyprlandDisplayOperate().state()}
