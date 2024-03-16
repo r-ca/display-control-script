@@ -8,7 +8,7 @@ if [ "$1" = "Get" ]; then
 	response=$(curl -s -X GET ${TARGET_HOST}${ENDPOINT})
 
 	# Parse response and echo result
-	state = $(echo $response | jq -r '.state')
+	state=$(echo $response | jq -r '.state')
 	if $state; then
 		echo 1
 	else
