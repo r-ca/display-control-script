@@ -17,9 +17,8 @@ if [ "$1" = "Get" ]; then
 elif [ "$1" = "Set" ]; then
 	# Set state
 	if [ "$4" = "1" ]; then
-		state=true
+		curl -s -X POST ${TARGET_HOST}${ENDPOINT} -d '{"state": true}'
 	else
-		state=false
+		curl -s -X POST ${TARGET_HOST}${ENDPOINT} -d '{"state": false}'
 	fi
-	curl -s -X POST ${TARGET_HOST}${ENDPOINT} -d '{"state": $state}'
 fi
