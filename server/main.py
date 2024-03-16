@@ -1,23 +1,28 @@
 from fastapi import FastAPI
+from interface.display_operate import IDisplayOperate
 from executer.hyprland import HyprlandDisplayOperate
+from model.display_state import DisplayState
+from model.display_request import DisplayRequest
+from util.host import HostUtils
 
 app = FastAPI()
 
-
-@app.get("/state")
-async def state():
-    return {"state": HyprlandDisplayOperate().state()}
+executer: IDisplayOperate = HyprlandDisplayOperate()
 
 
-# Debug
-@app.get("/turn_on")
-async def turn_on():
-    HyprlandDisplayOperate().turn_on()
-    return {"state": HyprlandDisplayOperate().state()}
+@app.get("/display")
+async def display_get():
+    return DisplayState(
+            hostname=HostUtils().get_hostname(),
+            state=executer.state())
 
 
-# Debug
-@app.get("/turn_off")
-async def turn_off():
-    HyprlandDisplayOperate().turn_off()
-    return {"state": HyprlandDisplayOperate().state()}
+@app.post("/display")
+async def display_post(req: DisplayRequest):
+    if (req.state):
+        executer.turn_on()
+    else:
+        executer.turn_off()
+    return DisplayState(
+            hostname=HostUtils().get_hostname(),
+            state=executer.state())
