@@ -17,8 +17,8 @@ if [ "$1" = "Get" ]; then
 elif [ "$1" = "Set" ]; then
 	# Set state
 	if [ "$4" = "1" ]; then
-		curl -s -X POST ${TARGET_HOST}${ENDPOINT} -d '{"state": true}'
+		curl -s -X POST -H "Content-Type: application/json" ${TARGET_HOST}${ENDPOINT} -d '{"state": true}'
 	else
-		curl -s -X POST ${TARGET_HOST}${ENDPOINT} -d '{"state": false}'
+		curl -s -X POST -H "Content-Type: application/json" ${TARGET_HOST}${ENDPOINT} -d '{"state": false}'
 	fi
 fi
